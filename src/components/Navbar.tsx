@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -21,7 +21,7 @@ title:'issues',
        { link.map(links=>
         <Link href={links.href}
         key={links.href}
-        className={`${links.href===currentpath?'text-zinc-900':'text-zinc-100'}hover:text-zinc-800 transition-colors text-lg `}
+        className={`${links.href===currentpath ? 'text-zinc-900' : 'text-zinc-500'}hover:text-zinc-800 transition-colors text-lg `}
         >
         {links.title}
         </Link>
