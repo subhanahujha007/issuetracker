@@ -1,4 +1,5 @@
 "use client"
+import Errorsmessage from "@/Componenets/Errors"
 import React, { useState } from 'react'
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
@@ -37,12 +38,16 @@ try {
 <TextField.Root className='mb-2'>
   <TextField.Input  placeholder='title' {...register('title')} />
 </TextField.Root>
-{errors.title && <Text color='red'>{errors.title.message}</Text>}
+<Errorsmessage>
+  {errors.title?.message}
+</Errorsmessage>
 <Controller
 name='description'
 control={control}
 render={({field})=><SimpleMDE placeholder='description' {...field} />} />
-{errors.description && <Text color='red' as='p'>{errors.description.message}</Text>}
+<Errorsmessage>
+  {errors.description?.message}
+</Errorsmessage>
 <Button>Submit issue</Button>
      </form >
      </div>
