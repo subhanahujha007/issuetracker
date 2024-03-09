@@ -1,4 +1,5 @@
 "use client";
+import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -25,7 +26,10 @@ title:'issues',
         >
         {links.title}
         </Link>
-        )}
+        )}<Link href="/" className='flex-end mx-[1000px]'>
+       <UserButton/>
+        </Link>
+
     </div>
   )
 }
