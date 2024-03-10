@@ -1,5 +1,5 @@
 "use client"
-import { Button } from '@mui/material'
+import { Button } from '@/components/ui/button'
 import { Callout } from '@radix-ui/themes'
 import {
   Pagination,
@@ -61,7 +61,7 @@ getdata()
   return (
     <>
     <Link href={"/issues/newissues"}
-    ><Button variant="outlined">Create New Issues</Button></Link>
+    ><Button >Create New Issues</Button></Link>
 
 {client ? (<><div className='max-w-[900px] m-auto border '>
   <div className='border p-5 justify-between flex flex-row '><p>issues</p><p>status</p><p>createdAt</p></div>
