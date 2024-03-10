@@ -1,7 +1,7 @@
 "use client"
 import Errorsmessage from "@/Componenets/Errors"
 import React, { useState } from 'react'
-import SimpleMDE from "react-simplemde-editor";
+import dynamic from 'next/dynamic';
 import "easymde/dist/easymde.min.css";
 import {useForm,Controller} from "react-hook-form"
 import {Button,Callout,Text,TextField} from "@radix-ui/themes"
@@ -11,6 +11,10 @@ import { issueschema } from '@/app/issueschema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {z} from "zod"
 type issuesform=z.infer<typeof issueschema>
+const SimpleMDE = dynamic(() => import('react-simplemde-editor'), {
+  ssr: false 
+});
+
 const Page = () => {
   const {register,control,handleSubmit,formState:{errors}}=useForm<issuesform>({
     resolver:zodResolver(issueschema)
