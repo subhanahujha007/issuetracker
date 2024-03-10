@@ -82,7 +82,7 @@ function Paginationsection({
 
 }){
 let pagenow=[]
-for(let i=0;i<= Math.ceil(totalitems/itemsperpage);i++ ){
+for(let i=1;i<= Math.ceil(totalitems/itemsperpage);i++ ){
   pagenow.push(i)
 }
 
@@ -91,6 +91,15 @@ for(let i=0;i<= Math.ceil(totalitems/itemsperpage);i++ ){
     <PaginationItem>
       <PaginationPrevious  onClick={()=>{if(currentpage > 1)setcurrentpage(currentpage - 1 )}} />
     </PaginationItem>
+    {
+      pagenow.map((page,index)=>(
+        <PaginationItem key={index} className={currentpage===page ?"bg-neutral-100":""}>
+        <PaginationLink onClick={()=>setcurrentpage(page)}>
+          {page}
+        </PaginationLink>
+        </PaginationItem>
+      ))
+    }
     <PaginationItem>
       <PaginationNext onClick={()=>{if(currentpage < pagenow.length)setcurrentpage(currentpage +1 )}} />
     </PaginationItem>
