@@ -41,7 +41,7 @@ type issuesform={
   updatedAt:Date,
   
 }
-const page = () => {
+const Page = () => {
   const [data,setdata]=useState<issuesform[]>([])
   const [client,setclient]=useState(false)
   const [currentpage,setcurrentpage]=useState(1)
@@ -119,7 +119,7 @@ getdata()
   )
 }
 
-export default page
+export default Page
 
 function Paginationsection({
   totalitems,

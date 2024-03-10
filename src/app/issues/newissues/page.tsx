@@ -11,7 +11,7 @@ import { issueschema } from '@/app/issueschema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {z} from "zod"
 type issuesform=z.infer<typeof issueschema>
-const page = () => {
+const Page = () => {
   const {register,control,handleSubmit,formState:{errors}}=useForm<issuesform>({
     resolver:zodResolver(issueschema)
   })
@@ -53,4 +53,4 @@ render={({field})=><SimpleMDE placeholder='description' {...field} />} />
   )
 }
 
-export default page
+export default Page
