@@ -30,7 +30,7 @@ const Page = () => {
     }
     <form  onSubmit={handleSubmit(async(data)=>{
 try {
-  await axios.post('/api/issues',data)
+  await axios.post(`${process.env.domain}/api/issues`,data)
   route.push("/issues")
 } catch (error) {
   seterror("An unexpected error occurred")
