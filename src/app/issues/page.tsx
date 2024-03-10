@@ -1,6 +1,7 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { Callout } from '@radix-ui/themes'
+
 import {
   Pagination,
   PaginationContent,
@@ -51,8 +52,10 @@ const firstitems=lastitem-itemsperpage;
 const currentitems=data.slice(firstitems,lastitem)
 useEffect(() => {
   async function getdata(){
-    const response=await axios.get(`${process.env.domain}/api/issues`)
+    const response=await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`)
     setdata(response.data)
+    
+    
     setclient(true)
   }
 getdata()
