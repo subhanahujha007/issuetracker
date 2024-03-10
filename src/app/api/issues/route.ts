@@ -13,3 +13,12 @@ export  async function POST(request:NextRequest) {
     })
     return NextResponse.json(newissue,{status:201})
 }
+export async function GET(request:NextRequest) {
+    try {
+        const issues = await prisma.issue.findMany(); 
+        return NextResponse.json(issues, { status: 200 });
+    } catch (error) {
+        console.error("Error fetching issues:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
+}

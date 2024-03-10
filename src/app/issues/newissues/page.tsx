@@ -11,7 +11,6 @@ import { issueschema } from '@/app/issueschema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {z} from "zod"
 type issuesform=z.infer<typeof issueschema>
-
 const page = () => {
   const {register,control,handleSubmit,formState:{errors}}=useForm<issuesform>({
     resolver:zodResolver(issueschema)
