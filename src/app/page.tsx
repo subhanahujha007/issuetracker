@@ -15,7 +15,7 @@ type issuesform={
 }
 export default function Home() {
   const [value,setvalue]=useState([])
-  const [data,setdata]=useState<{ name: string; uv: number }[]>([])
+  const [data,setdata]=useState<{ name: string; Total: number }[]>([])
   const [open,setopen]=useState(0)
   const [closed,setclosed]=useState(0)
   const [inprogress,setinprogress]=useState(0)
@@ -44,9 +44,9 @@ export default function Home() {
         setinprogress(inprogressCount);
 
         const newData = [
-          { name: 'OPEN', uv: openCount },
-          { name: 'CLOSED', uv: closedCount },
-          { name: 'IN-PROGRESS', uv: inprogressCount }
+          { name: 'OPEN', Total: openCount },
+          { name: 'CLOSED', Total: closedCount },
+          { name: 'IN-PROGRESS', Total: inprogressCount }
         ];
         setdata(newData);
         let latestissues=response.data.slice(response.data.length - 5)
@@ -70,12 +70,12 @@ export default function Home() {
           <XAxis dataKey="name" />
           <YAxis/>
           <Tooltip/>
-          <Bar dataKey="uv" fill="#8884d8" />
+          <Bar dataKey="Total" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
    </div>
    <div className="border items-center min-h-[100px]">
-    latest issues
+    <p className="text-center border-b p-2">Latest Issues</p>
     <div className="border-b p-4 flex flex-col justify-between">
 {
   issue.map((issues):any=>{
@@ -85,7 +85,7 @@ export default function Home() {
       <Callout.Root color={`${issues.status==='OPEN'?'green':(issues.status==="CLOSED"?'red':'blue')}`} className='mb-5'>
         <Callout.Text>{issues.status}</Callout.Text>
       </Callout.Root>
-      <h2>{issues.createdAt.toString()}</h2>
+      <h2>{issues.createdAt.toString().split('T')[0]}</h2>
       </div>
       </>
     )
