@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from "react"
 import axios from "axios";
+import Link  from "next/link";
 import { Callout } from "@radix-ui/themes";
 type issuesform={
   createdAt : Date,
@@ -81,7 +82,7 @@ export default function Home() {
   issue.map((issues):any=>{
     return(
       <><div key={issues.id} className="flex flex-row gap-5 justify-between">
-      <h1>{issues.title}</h1>
+      <h1><Link href={`issues/${issues.id}`}>{issues.title}</Link></h1>
       <Callout.Root color={`${issues.status==='OPEN'?'green':(issues.status==="CLOSED"?'red':'blue')}`} className='mb-5'>
         <Callout.Text>{issues.status}</Callout.Text>
       </Callout.Root>

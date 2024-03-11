@@ -73,7 +73,7 @@ getdata()
   
   currentitems.map((issue) => (
         <div className='border-b p-4 flex flex-row justify-between' key={issue.title}>
-          <h3>{issue.title}</h3>
+          <h3><Link href={`issues/${issue.id}`}>{issue.title}</Link></h3>
           <Callout.Root color={`${issue.status==='OPEN'?'green':(issue.status==="CLOSED"?'red':'blue')}`} className='mb-5'>
         <Callout.Text>{issue.status}</Callout.Text>
       </Callout.Root>
