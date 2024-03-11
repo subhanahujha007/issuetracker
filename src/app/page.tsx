@@ -3,7 +3,16 @@ import Image from "next/image";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from "react"
 import axios from "axios";
-
+import { Callout } from "@radix-ui/themes";
+type issuesform={
+  createdAt : Date,
+  description:string, 
+  id:number, 
+  status:string,
+  title: string,
+  updatedAt:Date,
+  
+}
 export default function Home() {
   const [value,setvalue]=useState([])
   const [data,setdata]=useState<{ name: string; uv: number }[]>([])
@@ -11,7 +20,7 @@ export default function Home() {
   const [closed,setclosed]=useState(0)
   const [inprogress,setinprogress]=useState(0)
   const [client,setclient]=useState(false)
- 
+  const [issue,setissue]=useState<issuesform[]>([])
   useEffect(() => {
     async function getData() {
       try {
@@ -33,7 +42,6 @@ export default function Home() {
         setopen(openCount);
         setclosed(closedCount);
         setinprogress(inprogressCount);
-        setclient(true);
 
         const newData = [
           { name: 'OPEN', uv: openCount },
@@ -41,6 +49,9 @@ export default function Home() {
           { name: 'IN-PROGRESS', uv: inprogressCount }
         ];
         setdata(newData);
+        let latestissues=response.data.slice(response.data.length - 5)
+        setissue(latestissues)
+        setclient(true);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -51,10 +62,9 @@ export default function Home() {
 
   
  
-  return (
+  return (<>{!client ? (<center>Loading</center>) : (
    <div className="p-4 flex flow-row gap-[300px]">
     <div className="w-[400px] h-[400px] border">
-      {open}
      <ResponsiveContainer width="100%" height="100%">
         <BarChart width={150} height={40} data={data}>
           <XAxis dataKey="name" />
@@ -64,12 +74,25 @@ export default function Home() {
         </BarChart>
       </ResponsiveContainer>
    </div>
-   <div className="border items-center">
+   <div className="border items-center min-h-[100px]">
     latest issues
-    <div className="border-b p-4 flex flex-row justify-between">
-
+    <div className="border-b p-4 flex flex-col justify-between">
+{
+  issue.map((issues):any=>{
+    return(
+      <><div key={issues.id} className="flex flex-row gap-5 justify-between">
+      <h1>{issues.title}</h1>
+      <Callout.Root color={`${issues.status==='OPEN'?'green':(issues.status==="CLOSED"?'red':'blue')}`} className='mb-5'>
+        <Callout.Text>{issues.status}</Callout.Text>
+      </Callout.Root>
+      <h2>{issues.createdAt.toString()}</h2>
+      </div>
+      </>
+    )
+  })
+}
     </div>
    </div>
-   </div>
+   </div>)}</>
   );
 }
