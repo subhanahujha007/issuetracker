@@ -34,11 +34,10 @@ export const Page = ({ params }: any) => {
     const handleclick=async(event:any)=>{
         try {
             const api={
-                status:event.target.value,
-                id:data?.id
+                status:event.target.value
             }
-        
-            const response=await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues`,api)
+      
+            const response=await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}`,api)
                 if(response.status==201){
                     setupdatedstatus(event.target.value)
                 }
@@ -47,21 +46,17 @@ export const Page = ({ params }: any) => {
         }
       }
       const handledelete=async()=>{
-try {
-    const id:any=data?.id
-    
-    await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues`,id)
+try { 
+    const response=await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues`,params.id)
 } catch (error) {
+  alert("didnt work")
     console.error(error)
 }
       }
     useEffect(() => {
         async function getData() {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`);
-          
-            const filteredData = response.data.find((item: IssuesForm) => item.id === Number(params.id));
-           
-            setData(filteredData); 
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}`);
+            setData(response.data); 
         }
         getData();
     }, []);
@@ -81,9 +76,9 @@ client ?(
     <p className='border p-2 min-h-[300px]'>{data?.description}</p>
 </div>
 <div className='p-4 gap-3 flex flex-col'>
-    <select className='border-4 border-black-500 mt-[20px]' value={selectedOption} onChange={handleSelectChange}>
+    <select className='border-4 border-black-500 mt-[20px]' value={selectedOption} defaultValue={"option2"} onChange={handleSelectChange}>
         <option value="option1">assigned</option>
-        <option value="option2" selected >unassigned</option>
+        <option value="option2"  >unassigned</option>
       </select>
       <AlertDialog>
   <AlertDialogTrigger>

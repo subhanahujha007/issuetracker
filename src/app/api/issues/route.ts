@@ -26,7 +26,6 @@ export async function GET(request:NextRequest) {
 export async function PUT(request:NextRequest){
     try {
         const body=await request.json()
-       
         const {id,status}=body;
          await prisma.issue.update({
             where: {
@@ -42,11 +41,13 @@ export async function PUT(request:NextRequest){
     }
     
 }
+
 export async function DELETE(request:NextRequest){
 try {
     const body=await request.json()
     const {id}=body
-    console.log(id)
+  console.log(body + id)
+    console.log("here is the id "+id)
     await prisma.issue.delete(
         {
             where:{
