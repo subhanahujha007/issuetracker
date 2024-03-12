@@ -14,6 +14,10 @@ type IssuesForm = {
 export const Page = ({ params }: any) => {
     const [data, setData] = useState<IssuesForm | null>(null); 
     const [client,setclient]=useState<boolean>(false)
+    const [selectedOption, setSelectedOption] = useState('');
+    const handleSelectChange = (event:any) => {
+      setSelectedOption(event.target.value);
+    };
     useEffect(() => {
         async function getData() {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`);
@@ -39,6 +43,13 @@ client ?(
     <h1 className='border p-2'>{data?.title}</h1>
     <p className='border p-2 min-h-[300px]'>{data?.description}</p>
 </div>
+<div className='p-4 '>
+    <select className='border-4 border-black-500 mt-[20px]' value={selectedOption} onChange={handleSelectChange}>
+        <option value="option1">assigned</option>
+        <option value="option2" selected >unassigned</option>
+      </select>
+    </div>
+
 
 </div>
 )
