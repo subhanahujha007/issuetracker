@@ -65,7 +65,7 @@ client ?(
 ):(<div className='flex flex-row'>
    
 <div className='p-4 flex flex-col gap-5 min-w-[700px] max-w-xl'>
-<Callout.Root color={`${data?.status==='OPEN'?'green':(data?.status==="CLOSED"?'red':'blue')}`} className='min-w-0 max-w-28'>
+<Callout.Root color={`${updatedstatus===null?(data?.status==='OPEN'?'green':(data?.status==="CLOSED"?'red':'blue')):(updatedstatus==='OPEN'?'green':(updatedstatus==="CLOSED"?'red':'blue'))}`} className='min-w-0 max-w-28'>
         <Callout.Text>{updatedstatus===null?data?.status:updatedstatus}</Callout.Text>
       </Callout.Root>
     <h1 className='border p-2'>{data?.title}</h1>
