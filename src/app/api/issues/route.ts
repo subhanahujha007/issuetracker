@@ -22,3 +22,11 @@ export async function GET(request:NextRequest) {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
+
+export async function PUT(request:NextRequest){
+    const body=await request.json()
+    console.log(body)
+    const {id,status}=body;
+    console.log(id,status)
+    return NextResponse.json("ho gya")
+    }

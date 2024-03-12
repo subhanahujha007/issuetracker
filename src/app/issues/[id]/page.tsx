@@ -21,7 +21,8 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-  
+ 
+
 export const Page = ({ params }: any) => {
     const [data, setData] = useState<IssuesForm | null>(null); 
     const [client,setclient]=useState<boolean>(false)
@@ -29,6 +30,14 @@ export const Page = ({ params }: any) => {
     const handleSelectChange = (event:any) => {
       setSelectedOption(event.target.value);
     };
+    const handleclick=async(event:any)=>{
+        const api={
+            status:event.target.value,
+            id:data?.id
+        }
+        console.log(api)
+        await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues`,api)
+      }
     useEffect(() => {
         async function getData() {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`);
@@ -72,13 +81,13 @@ client ?(
     <AlertDialogFooter className='flex flex-row justify-between '>
         {
             data?.status==='OPEN'?(<>
-      <AlertDialogAction className=' bg-red-800 '>Closed</AlertDialogAction>
-      <AlertDialogAction className='bg-blue-800'>In-progress</AlertDialogAction></>)
+      <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className=' bg-red-800 '>Closed</AlertDialogAction>
+      <AlertDialogAction value="IN-PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>)
       :(
-        data?.status==='CLOSED'?(<><AlertDialogAction className='bg-green-800'>OPEN</AlertDialogAction>
-        <AlertDialogAction className='bg-blue-800'>In-progress</AlertDialogAction></>):(
-         <>   <AlertDialogAction className='bg-red-800'>Closed</AlertDialogAction>
-      <AlertDialogAction className='bg-green-800'>OPEN</AlertDialogAction></>
+        data?.status==='CLOSED'?(<><AlertDialogAction onClick={(event)=>handleclick(event)} value="OPEN" className='bg-green-800'>OPEN</AlertDialogAction>
+        <AlertDialogAction value="IN-PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>):(
+         <>   <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className='bg-red-800'>Closed</AlertDialogAction>
+      <AlertDialogAction value="OPEN" onClick={(event)=>handleclick(event)} className='bg-green-800'>OPEN</AlertDialogAction></>
         )
       )
       }<AlertDialogAction>Cancel</AlertDialogAction>
