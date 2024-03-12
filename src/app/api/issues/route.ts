@@ -26,7 +26,7 @@ export async function GET(request:NextRequest) {
 export async function PUT(request:NextRequest){
     try {
         const body=await request.json()
-        console.log(body)
+       
         const {id,status}=body;
          await prisma.issue.update({
             where: {

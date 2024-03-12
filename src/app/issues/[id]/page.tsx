@@ -37,7 +37,7 @@ export const Page = ({ params }: any) => {
                 status:event.target.value,
                 id:data?.id
             }
-            console.log(api)
+        
             const response=await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues`,api)
                 if(response.status==201){
                     setupdatedstatus(event.target.value)
@@ -49,9 +49,9 @@ export const Page = ({ params }: any) => {
     useEffect(() => {
         async function getData() {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`);
-            console.log(response.data[5].id)
+          
             const filteredData = response.data.find((item: IssuesForm) => item.id === Number(params.id));
-            console.log(filteredData)
+           
             setData(filteredData); 
         }
         getData();
