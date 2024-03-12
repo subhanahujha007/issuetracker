@@ -57,7 +57,7 @@ client ?(
 ):(<div className='flex flex-row'>
    
 <div className='p-4 flex flex-col gap-5 min-w-[700px] max-w-xl'>
-<Callout.Root color={`${data?.status==='OPEN'?'green':(data?.status==="CLOSED"?'red':'blue')}`} className='mb-5 max-w-[70px] max-h-[50px] p-1 mt-3'>
+<Callout.Root color={`${data?.status==='OPEN'?'green':(data?.status==="CLOSED"?'red':'blue')}`} className='min-w-0 max-w-28'>
         <Callout.Text>{data?.status}</Callout.Text>
       </Callout.Root>
     <h1 className='border p-2'>{data?.title}</h1>
@@ -82,10 +82,10 @@ client ?(
         {
             data?.status==='OPEN'?(<>
       <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className=' bg-red-800 '>Closed</AlertDialogAction>
-      <AlertDialogAction value="IN-PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>)
+      <AlertDialogAction value="IN_PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>)
       :(
         data?.status==='CLOSED'?(<><AlertDialogAction onClick={(event)=>handleclick(event)} value="OPEN" className='bg-green-800'>OPEN</AlertDialogAction>
-        <AlertDialogAction value="IN-PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>):(
+        <AlertDialogAction value="IN_PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>):(
          <>   <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className='bg-red-800'>Closed</AlertDialogAction>
       <AlertDialogAction value="OPEN" onClick={(event)=>handleclick(event)} className='bg-green-800'>OPEN</AlertDialogAction></>
         )

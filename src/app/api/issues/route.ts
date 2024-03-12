@@ -24,9 +24,20 @@ export async function GET(request:NextRequest) {
 }
 
 export async function PUT(request:NextRequest){
-    const body=await request.json()
-    console.log(body)
-    const {id,status}=body;
-    console.log(id,status)
-    return NextResponse.json("ho gya")
+    try {
+        const body=await request.json()
+        console.log(body)
+        const {id,status}=body;
+         await prisma.issue.update({
+            where: {
+                id: id
+            },
+            data: {
+                status:status
+            }
+        });
+        return NextResponse.json("ho gya")
+    } catch (error) {
+        console.error(error)
+    }
     }
