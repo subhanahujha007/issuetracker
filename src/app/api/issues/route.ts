@@ -36,7 +36,7 @@ export async function PUT(request:NextRequest){
                 status:status
             }
         });
-        return NextResponse.json("ho gya")
+        return NextResponse.json({message:"Status updated"},{status:201})
     } catch (error) {
         console.error(error)
     }

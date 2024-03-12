@@ -24,6 +24,7 @@ import {
  
 
 export const Page = ({ params }: any) => {
+    const [updatedstatus,setupdatedstatus]=useState(null)
     const [data, setData] = useState<IssuesForm | null>(null); 
     const [client,setclient]=useState<boolean>(false)
     const [selectedOption, setSelectedOption] = useState('');
@@ -31,12 +32,19 @@ export const Page = ({ params }: any) => {
       setSelectedOption(event.target.value);
     };
     const handleclick=async(event:any)=>{
-        const api={
-            status:event.target.value,
-            id:data?.id
+        try {
+            const api={
+                status:event.target.value,
+                id:data?.id
+            }
+            console.log(api)
+            const response=await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues`,api)
+                if(response.status==201){
+                    setupdatedstatus(event.target.value)
+                }
+        } catch (error) {
+            console.error(error)
         }
-        console.log(api)
-        await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues`,api)
       }
     useEffect(() => {
         async function getData() {
@@ -58,7 +66,7 @@ client ?(
    
 <div className='p-4 flex flex-col gap-5 min-w-[700px] max-w-xl'>
 <Callout.Root color={`${data?.status==='OPEN'?'green':(data?.status==="CLOSED"?'red':'blue')}`} className='min-w-0 max-w-28'>
-        <Callout.Text>{data?.status}</Callout.Text>
+        <Callout.Text>{updatedstatus===null?data?.status:updatedstatus}</Callout.Text>
       </Callout.Root>
     <h1 className='border p-2'>{data?.title}</h1>
     <p className='border p-2 min-h-[300px]'>{data?.description}</p>
