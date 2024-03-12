@@ -46,6 +46,15 @@ export const Page = ({ params }: any) => {
             console.error(error)
         }
       }
+      const handledelete=async()=>{
+try {
+    const id:any=data?.id
+    
+    await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues`,id)
+} catch (error) {
+    console.error(error)
+}
+      }
     useEffect(() => {
         async function getData() {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`);
@@ -103,7 +112,23 @@ client ?(
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>
-
+<AlertDialog>
+  <AlertDialogTrigger>
+    <Callout.Root color='red'>
+        <Callout.Text>Delete issues</Callout.Text>
+    </Callout.Root>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>DO you want to delete this issue </AlertDialogTitle>
+    </AlertDialogHeader>
+    <AlertDialogFooter className='flex flex-row justify-between '>
+        <AlertDialogAction className='bg-red-800' onClick={handledelete}>Delete it</AlertDialogAction>
+      <AlertDialogAction>Cancel</AlertDialogAction>
+     
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
 
     </div>
 
