@@ -92,7 +92,7 @@ client ?(
     </AlertDialogHeader>
     <AlertDialogFooter className='flex flex-row justify-between '>
         {
-            data?.status==='OPEN'?(<>
+         updatedstatus===null?(data?.status==='OPEN'?(<>
       <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className=' bg-red-800 '>Closed</AlertDialogAction>
       <AlertDialogAction value="IN_PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>)
       :(
@@ -101,6 +101,17 @@ client ?(
          <>   <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className='bg-red-800'>Closed</AlertDialogAction>
       <AlertDialogAction value="OPEN" onClick={(event)=>handleclick(event)} className='bg-green-800'>OPEN</AlertDialogAction></>
         )
+      )):(updatedstatus==='OPEN'?(<>
+        <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className=' bg-red-800 '>Closed</AlertDialogAction>
+        <AlertDialogAction value="IN_PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>)
+        :(
+          updatedstatus==='CLOSED'?(<><AlertDialogAction onClick={(event)=>handleclick(event)} value="OPEN" className='bg-green-800'>OPEN</AlertDialogAction>
+          <AlertDialogAction value="IN_PROGRESS" onClick={(event)=>handleclick(event)} className='bg-blue-800'>In-progress</AlertDialogAction></>):(
+           <>   <AlertDialogAction value="CLOSED" onClick={(event)=>handleclick(event)} className='bg-red-800'>Closed</AlertDialogAction>
+        <AlertDialogAction value="OPEN" onClick={(event)=>handleclick(event)} className='bg-green-800'>OPEN</AlertDialogAction></>
+          )
+        )
+      
       )
       }<AlertDialogAction>Cancel</AlertDialogAction>
      
