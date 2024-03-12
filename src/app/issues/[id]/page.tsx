@@ -10,7 +10,18 @@ type IssuesForm = {
     title: string,
     updatedAt: Date,
 }
-
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
+  
 export const Page = ({ params }: any) => {
     const [data, setData] = useState<IssuesForm | null>(null); 
     const [client,setclient]=useState<boolean>(false)
@@ -43,11 +54,40 @@ client ?(
     <h1 className='border p-2'>{data?.title}</h1>
     <p className='border p-2 min-h-[300px]'>{data?.description}</p>
 </div>
-<div className='p-4 '>
+<div className='p-4 gap-3 flex flex-col'>
     <select className='border-4 border-black-500 mt-[20px]' value={selectedOption} onChange={handleSelectChange}>
         <option value="option1">assigned</option>
         <option value="option2" selected >unassigned</option>
       </select>
+      <AlertDialog>
+  <AlertDialogTrigger>
+    <Callout.Root color='purple'>
+        <Callout.Text>Edit issue</Callout.Text>
+    </Callout.Root>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>What status do you want to change it to</AlertDialogTitle>
+    </AlertDialogHeader>
+    <AlertDialogFooter className='flex flex-row justify-between '>
+        {
+            data?.status==='OPEN'?(<>
+      <AlertDialogAction className=' bg-red-800 '>Closed</AlertDialogAction>
+      <AlertDialogAction className='bg-blue-800'>In-progress</AlertDialogAction></>)
+      :(
+        data?.status==='CLOSED'?(<><AlertDialogAction className='bg-green-800'>OPEN</AlertDialogAction>
+        <AlertDialogAction className='bg-blue-800'>In-progress</AlertDialogAction></>):(
+         <>   <AlertDialogAction className='bg-red-800'>Closed</AlertDialogAction>
+      <AlertDialogAction className='bg-green-800'>OPEN</AlertDialogAction></>
+        )
+      )
+      }<AlertDialogAction>Cancel</AlertDialogAction>
+     
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+
+
     </div>
 
 
