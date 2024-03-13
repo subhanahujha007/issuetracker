@@ -39,7 +39,7 @@ import {
                 status:event.target.value
             }
       
-            const response=await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}`,api)
+            const response=await axios.put(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}!`,api)
                 if(response.status==201){
                     setupdatedstatus(event.target.value)
                 }
@@ -49,7 +49,7 @@ import {
       }
       const handledelete=async()=>{
 try { 
-    const response=await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}`)
+    const response=await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}!`)
     if(response.status==201){
       route.push("/issues")
     }
@@ -60,7 +60,7 @@ try {
       }
     useEffect(() => {
         async function getData() {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}`);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}!`);
             setData(response.data); 
         }
         getData();

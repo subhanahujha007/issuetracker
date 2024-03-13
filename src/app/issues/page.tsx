@@ -52,7 +52,7 @@ const firstitems=lastitem-itemsperpage;
 const currentitems=data.slice(firstitems,lastitem)
 useEffect(() => {
   async function getdata(){
-    const response=await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`)
+    const response=await axios.get(`${process.env.NEXT_PUBLIC_domain!}/api/issues`)
     setdata(response.data)
     
     

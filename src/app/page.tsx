@@ -25,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_domain!}/api/issues`);
         setvalue(response.data);
 
         let openCount = 0, closedCount = 0, inprogressCount = 0;
