@@ -41,23 +41,3 @@ export async function PUT(request:NextRequest){
     }
     
 }
-
-export async function DELETE(request:NextRequest){
-try {
-    const body=await request.json()
-    const {id}=body
-  console.log(body + id)
-    console.log("here is the id "+id)
-    await prisma.issue.delete(
-        {
-            where:{
-                id:id
-            }
-        }
-    )
-    return NextResponse.json({message:"done"},{status:201})
-} catch (error) {
-    console.log(error)
-return NextResponse.json({message:"not done"},{status:500})
-}
- }
