@@ -24,7 +24,7 @@ import {
   } from "@/components/ui/alert-dialog"
  
 
-export const Page = ({ params }: any) => {
+export const page = ({ params }: any) => {
   const route=useRouter()
     const [updatedstatus,setupdatedstatus]=useState(null)
     const [data, setData] = useState<IssuesForm | null>(null); 
@@ -151,4 +151,4 @@ client ?(
     );
 };
 
-export default Page
+export default page
