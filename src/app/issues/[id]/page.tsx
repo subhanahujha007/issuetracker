@@ -64,7 +64,7 @@ try {
             setData(response.data); 
         }
         getData();
-    }, []);
+    }, [params.id]);
 
     return (
         <div>
