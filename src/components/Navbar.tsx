@@ -15,7 +15,7 @@ href:'/issues',
 title:'issues',
     }]
   return (
-    <div className='flex flex-row items-center h-16 w-full gap-8 p-4 border-b  '>
+    <div className='flex flex-row items-center h-16  gap-8 p-4 border-b max-w-full  '>
         <Link href="/">
         <AiFillBug/>
         </Link>

@@ -64,7 +64,7 @@ export default function Home() {
   
  
   return (<>{!client ? (<center>Loading</center>) : (
-   <div className="p-4 flex flow-row gap-[300px]">
+   <div className="p-4 flex flow-row gap-[300px] flex-wrap">
     <div className="w-[400px] h-[400px] border">
      <ResponsiveContainer width="100%" height="100%">
         <BarChart width={150} height={40} data={data}>

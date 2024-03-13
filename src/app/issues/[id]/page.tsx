@@ -10,6 +10,7 @@ type IssuesForm = {
     title: string,
     updatedAt: Date,
 }
+import { useRouter } from 'next/navigation';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -24,6 +25,7 @@ import {
  
 
 export const Page = ({ params }: any) => {
+  const route=useRouter()
     const [updatedstatus,setupdatedstatus]=useState(null)
     const [data, setData] = useState<IssuesForm | null>(null); 
     const [client,setclient]=useState<boolean>(false)
@@ -47,7 +49,10 @@ export const Page = ({ params }: any) => {
       }
       const handledelete=async()=>{
 try { 
-    const response=await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues`,params.id)
+    const response=await axios.delete(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}`)
+    if(response.status==201){
+      route.push("/issues")
+    }
 } catch (error) {
   alert("didnt work")
     console.error(error)

@@ -33,3 +33,21 @@ export async function PUT(request:NextRequest,{params}:any){
     }
     
 }
+
+export async function DELETE(request:NextRequest,{params}:any){
+    try {
+       
+        
+        await prisma.issue.delete(
+            {
+                where:{
+                    id:Number(params.id)
+                }
+            }
+        )
+        return NextResponse.json({message:"done"},{status:201})
+    } catch (error) {
+        console.log(error)
+    return NextResponse.json({message:"not done"},{status:500})
+    }
+     }
