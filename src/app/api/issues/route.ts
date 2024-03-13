@@ -19,7 +19,7 @@ export async function GET(request:NextRequest) {
         return NextResponse.json(issues, { status: 200 });
     } catch (error) {
         console.error("Error fetching issues:", error);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        return NextResponse.json({ message: "nahi aaya lol" }, { status: 500 });
     }
 }
 
