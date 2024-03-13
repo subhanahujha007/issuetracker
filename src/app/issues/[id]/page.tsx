@@ -60,7 +60,7 @@ try {
       }
     useEffect(() => {
         async function getData() {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_domain}/api/issues/${params.id}!`);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_domain!}/api/issues/${params.id}`);
             setData(response.data); 
         }
         getData();
