@@ -43,29 +43,44 @@ type issuesform={
   
 }
 const Page = () => {
+  const [selectedOption,setSelectedOption]=useState("")
   const [data,setdata]=useState<issuesform[]>([])
   const [client,setclient]=useState(false)
+  const [all,setall]=useState<issuesform[]>([])
   const [currentpage,setcurrentpage]=useState(1)
   const [itemsperpage,setitemsperpage]=useState(10)
+  const [datachanged,setdatachanged]=useState<issuesform[]>([])
 const lastitem=currentpage*itemsperpage;
 const firstitems=lastitem-itemsperpage;
 const currentitems=data.slice(firstitems,lastitem)
+
 useEffect(() => {
   async function getdata(){
-    const response=await axios.get(`${process.env.NEXT_PUBLIC_domain!}/api/issues`)
+    var response=await axios.get(`${process.env.NEXT_PUBLIC_domain!}/api/issues`)
     setdata(response.data)
-    
-    
+    setdatachanged(response.data)
+    setall(response.data)
     setclient(true)
   }
 getdata()
 
 }, [])
+const handleSelectChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
+  const selectedValue = e.target.value;
+  setSelectedOption(selectedValue);
+  const filteredData = selectedValue === "All" ? all : datachanged.filter(item => item.status === selectedValue);
+  setdata(filteredData);
+}
   return (
     <>
     <Link href={"/issues/newissues"}
     ><Button >Create New Issues</Button></Link>
-
+ <select className='border border-black-500 mt-[20px] ml-9' value={selectedOption} defaultValue={"All"} onChange={handleSelectChange} >
+        <option value="All">All</option>
+        <option value="OPEN"  >Open</option>
+        <option value="CLOSED">Closed</option>
+        <option value="IN_PROGRESS">In-progress</option>
+      </select>
 {client ? (<><div className='max-w-[900px] m-auto border '>
   <div className='border p-5 justify-between flex flex-row '><p>issues</p><p>status</p><p>createdAt</p></div>
   <br />
