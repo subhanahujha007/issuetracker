@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-technologies used here are :nextjs ,radix ui ,shadcn ,clerk ,tailwind ,zod ,typescript ,prisma
+technologies used here are :nextjs ,radix ui ,shadcn ,clerk ,tailwind ,zod ,typescript ,prisma ,react hook form
 
 First, run the development server:
 
