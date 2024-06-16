@@ -5,7 +5,6 @@ import { Callout } from '@radix-ui/themes';
 type IssuesForm = {
     createdAt: Date,
     description: string,
-    id: number,
     status: string,
     title: string,
     updatedAt: Date,
@@ -50,7 +49,7 @@ import {
       const handledelete=async()=>{
 try { 
     const response=await axios.delete(`${process.env.NEXT_PUBLIC_domain!}/api/issues/${params.id}`)
-    if(response.status==201){
+    if(response.status==200){
       route.push("/issues")
     }
 } catch (error) {

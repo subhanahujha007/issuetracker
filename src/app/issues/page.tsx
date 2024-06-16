@@ -36,7 +36,7 @@ import axios from 'axios'
 type issuesform={
   createdAt : Date,
   description:string, 
-  id:number, 
+  _id:number, 
   status:string,
   title: string,
   updatedAt:Date,
@@ -61,6 +61,7 @@ useEffect(() => {
     setdatachanged(response.data)
     setall(response.data)
     setclient(true)
+    console.log(response.data)
   }
 getdata()
 
@@ -88,7 +89,7 @@ const handleSelectChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
   
   currentitems.map((issue) => (
         <div className='border-b p-4 flex flex-row justify-between' key={issue.title}>
-          <h3><Link href={`issues/${issue.id}`}>{issue.title}</Link></h3>
+          <h3><Link href={`issues/${issue._id}`}>{issue.title}</Link></h3>
           <Callout.Root color={`${issue.status==='OPEN'?'green':(issue.status==="CLOSED"?'red':'blue')}`} className='mb-5'>
         <Callout.Text>{issue.status}</Callout.Text>
       </Callout.Root>

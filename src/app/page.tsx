@@ -12,7 +12,6 @@ type issuesform={
   status:string,
   title: string,
   updatedAt:Date,
-  
 }
 export default function Home() {
   const [value,setvalue]=useState([])
