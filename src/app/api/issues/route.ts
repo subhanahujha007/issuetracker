@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import Issue from "../../../../Databse/Schema";
-import dbConnect from "../../../../Databse/Connect";
+import { dbConnect } from "../../../../Databse/Connect";
 import { issueschema } from "../../issueschema";
 
 export async function POST(request: NextRequest) {

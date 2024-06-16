@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Issue from '../../../../../Databse/Schema'; // Adjust the path as per your project structure
-import dbConnect from '../../../../../Databse/Connect';
+import { dbConnect } from '../../../../../Databse/Connect';
 
 dbConnect(); // Ensure MongoDB connection is established
 
