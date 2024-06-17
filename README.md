@@ -9,6 +9,7 @@ Create an env.local file
 
 make an api key on clerk 
 populate your enviorment variable
+
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 
 CLERK_SECRET_KEY=
