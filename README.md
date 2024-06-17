@@ -8,11 +8,21 @@ Set Up Environment Variables:
 Create an env.local file and configure the following environment variables:
 
 makefile
-Copy code
+Copy code  
+
+
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+
+
 CLERK_SECRET_KEY=
+
+
 NEXT_PUBLIC_domain=http://localhost:3000/
+
+
 DATABASE_URL=
+
+
 Replace NEXT_PUBLIC_domain with your domain name after deployment.
 
 Start the Development Server:
