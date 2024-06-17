@@ -2,9 +2,23 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 This project is made so that you can create issues 
-technologies used here are :nextjs ,radix ui ,shadcn ,clerk ,tailwind ,zod ,typescript ,prisma ,react hook form
+technologies used here are :nextjs ,radix ui ,shadcn ,clerk ,tailwind ,zod ,typescript ,mongodb ,react hook form
 
 First, run the development server:
+Create an env.local file 
+
+make an api key on clerk 
+populate your enviorment variable
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+
+CLERK_SECRET_KEY=
+
+//currently use localhost after deployment change it to your domain name on vercel
+NEXT_PUBLIC_domain= http://localhost:3000/
+
+Create an account on mongodb
+
+DATABASE_URL=
 
 ```bash
 npm run dev
