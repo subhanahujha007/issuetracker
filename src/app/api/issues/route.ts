@@ -2,9 +2,9 @@ import { NextResponse, NextRequest } from "next/server";
 import Issue from "../../../../Databse/Schema";
 import { dbConnect } from "../../../../Databse/Connect";
 import { issueschema } from "../../issueschema";
-
+ dbConnect();
 export async function POST(request: NextRequest) {
-  await dbConnect();
+  
   
   const body = await request.json();
   const validation = issueschema.safeParse(body);
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  await dbConnect();
+ 
   
   try {
     const issues = await Issue.find();
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
-  await dbConnect();
+
   
   try {
     const body = await request.json();

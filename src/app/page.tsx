@@ -8,7 +8,7 @@ import { Callout } from "@radix-ui/themes";
 type issuesform={
   createdAt : Date,
   description:string, 
-  id:number, 
+  _id:number, 
   status:string,
   title: string,
   updatedAt:Date,
@@ -80,8 +80,8 @@ export default function Home() {
 {
   issue.map((issues):any=>{
     return(
-      <><div key={issues.id} className="flex flex-row gap-5 justify-between">
-      <h1><Link href={`issues/${issues.id}`}>{issues.title}</Link></h1>
+      <><div key={issues._id} className="flex flex-row gap-5 justify-between">
+      <h1><Link href={`issues/${issues._id}`}>{issues.title}</Link></h1>
       <Callout.Root color={`${issues.status==='OPEN'?'green':(issues.status==="CLOSED"?'red':'blue')}`} className='mb-5'>
         <Callout.Text>{issues.status}</Callout.Text>
       </Callout.Root>
