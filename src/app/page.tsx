@@ -122,7 +122,7 @@ export default function Home() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="border items-center min-h-[100px]">
+          <div className="border items-center min-h-[100px] max-w-[600px]">
             <p className="text-center border-b p-2">Latest Issues</p>
             <div className="border-b p-4 flex flex-col justify-between">
               {issue.map((issues: issuesform) => (
