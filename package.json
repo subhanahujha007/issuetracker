@@ -19,6 +19,8 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/themes": "^2.0.3",
+    "@uiw/react-heat-map": "^2.2.2",
+    "@uiw/react-tooltip": "^4.22.3",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
