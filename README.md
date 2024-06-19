@@ -1,12 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Issue tracker build with  Radix UI, Clerk, Tailwind, and More
+This project is a Next.js application bootstrapped with create-next-app, featuring technologies such as Next.js, Radix UI, Shadcn, Clerk, Tailwind CSS, Zod, TypeScript, MongoDB, and React Hook Form.
 
-## Getting Started
-This project is made so that you can create issues 
-technologies used here are :nextjs ,radix ui ,shadcn ,clerk ,tailwind ,zod ,typescript ,prisma ,react hook form
+Getting Started
+To get started with this project, follow these steps:
 
-First, run the development server:
+Set Up Environment Variables:
+Create an env.local file and configure the following environment variables:
 
-```bash
+makefile
+Copy code  
+
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+
+
+CLERK_SECRET_KEY=
+
+
+NEXT_PUBLIC_domain=http://localhost:3000/
+
+
+DATABASE_URL=
+
+
+Replace NEXT_PUBLIC_domain with your domain name after deployment.
+
+Start the Development Server:
+
+bash
+Copy code
 npm run dev
 # or
 yarn dev
@@ -14,25 +36,24 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
+Open http://localhost:3000 with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start Editing:
+You can start editing the page by modifying app/page.tsx. The page auto-updates as you edit the file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Additional Setup
+This project uses next/font to automatically optimize and load Inter, a custom Google Font.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Learn More
+To learn more about Next.js, explore these resources:
 
-## Learn More
+Next.js Documentation - Learn about Next.js features and API.
+Learn Next.js - Interactive Next.js tutorial.
+You can also check out the Next.js GitHub repository for feedback and contributions.
 
-To learn more about Next.js, take a look at the following resources:
+Deploy on Vercel
+The easiest way to deploy your Next.js app is to use the Vercel Platform from the creators of Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Check out the Next.js deployment documentation for more details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to customize and expand upon this README to suit your project's specific needs. Happy coding! 🚀
