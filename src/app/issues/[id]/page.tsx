@@ -41,7 +41,7 @@ import {
             const response=await axios.put(`${process.env.NEXT_PUBLIC_domain!}/api/issues/${params.id}`,api)
                 if(response.status==201){
                     setupdatedstatus(event.target.value)
-                    window.location.reload();
+                    route.refresh();
                 }
         } catch (error) {
             console.error(error)
