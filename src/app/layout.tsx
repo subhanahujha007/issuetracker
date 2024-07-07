@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider>
+        <ClerkProvider
+        publishableKey='pk_test_Y3JlZGlibGUtZ29vc2UtNDMuY2xlcmsuYWNjb3VudHMuZGV2JA'
+        >
         <Theme> <Navbar/>
         {children}
         </Theme></ClerkProvider>

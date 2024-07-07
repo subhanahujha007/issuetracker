@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  isuuetracker:
+    image: subhanshujha007/issuetracker:latest
+    container_name: issuetrackercontainer
+    ports:
+      - '3000:3000'
+    environment:
+      - MONGO_URI="mongodb://mongo:27017"
+      - publishableKey=pk_test_Y3JlZGlibGUtZ29vc2UtNDMuY2xlcmsuYWNjb3VudHMuZGV2JA
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
