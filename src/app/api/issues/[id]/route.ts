@@ -2,12 +2,23 @@ import { NextRequest, NextResponse } from 'next/server';
 import Issue from '../../../../../Databse/Schema';
 import { dbConnect } from '../../../../../Databse/Connect';
 import { redis } from '../../../../../Redis/redis';
+
 dbConnect();
+
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const cacheKey = `issue:${params.id}`;
+  
   try {
     const cachedIssue = await redis.get(cacheKey);
-    if (cachedIssue) return NextResponse.json(JSON.stringify(cachedIssue), { status: 200 });
+    
+    if (typeof cachedIssue === 'string') {
+      try {
+        const parsedIssue = JSON.parse(cachedIssue);
+        return NextResponse.json(parsedIssue, { status: 200 });
+      } catch (parseError) {
+        console.error('Error parsing cached issue:', parseError);
+      }
+    }
 
     const issue = await Issue.findOne({ _id: params.id });
     if (!issue) return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
