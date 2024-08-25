@@ -1,17 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Issue from '../../../../../Databse/Schema'; // Adjust the path as per your project structure
+import Issue from '../../../../../Databse/Schema';
 import { dbConnect } from '../../../../../Databse/Connect';
+import { redis } from '../../../../../Redis/redis';
 
-dbConnect(); // Ensure MongoDB connection is established
+dbConnect();
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const cacheKey = `issue:${params.id}`;
   try {
+    const cachedIssue = await redis.get(cacheKey);
+    if (cachedIssue) return NextResponse.json(JSON.parse(cachedIssue), { status: 200 });
+
     const issue = await Issue.findOne({ _id: params.id });
+    if (!issue) return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
 
-    if (!issue) {
-      return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
-    }
-
+    await redis.set(cacheKey, JSON.stringify(issue), "EX", 3600);
     return NextResponse.json(issue, { status: 200 });
   } catch (error) {
     console.error('Error fetching issue:', error);
@@ -29,11 +32,9 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       { status: status },
       { new: true }
     );
+    if (!updatedIssue) return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
 
-    if (!updatedIssue) {
-      return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
-    }
-
+    await redis.del(`issue:${params.id}`);
     return NextResponse.json({ message: 'Status updated' }, { status: 200 });
   } catch (error) {
     console.error('Error updating issue:', error);
@@ -44,11 +45,9 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const deletedIssue = await Issue.findByIdAndDelete(params.id);
+    if (!deletedIssue) return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
 
-    if (!deletedIssue) {
-      return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
-    }
-
+    await redis.del(`issue:${params.id}`);
     return NextResponse.json({ message: 'Issue deleted' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting issue:', error);

@@ -27,6 +27,7 @@
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
     "easymde": "^2.18.0",
+    "ioredis": "^5.4.1",
     "lucide-react": "^0.354.0",
     "mongoose": "^8.4.1",
     "next": "14.1.3",
