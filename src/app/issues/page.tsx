@@ -144,7 +144,7 @@ const Page = () => {
           <AccordionItem value="item-1">
             <AccordionTrigger>Who is the developer?</AccordionTrigger>
             <AccordionContent>
-              Hey, it's me <Link href="https://github.com/subhanahujha007">Subhanshu Jha</Link>
+              Hey its me <Link href="https://github.com/subhanahujha007">Subhanshu Jha</Link>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
