@@ -1,9 +1,7 @@
-import Redis from "ioredis"
+import { Redis } from '@upstash/redis'
 
- const getredisurl =()=> {
-    if(process.env.NEXTURL){
-        return process.env.NEXTURL
-    }
-else throw new Error("redis not configured")
- }
-export const redis =new Redis(getredisurl())
+export const redisdb =()=> new Redis({
+  url: process.env.NEXTURL,
+  token: process.env.TOKEN,
+})
+

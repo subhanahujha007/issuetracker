@@ -2,8 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import Issue from "../../../../Databse/Schema";
 import { dbConnect } from "../../../../Databse/Connect";
 import { issueschema } from "../../issueschema";
-import { redis } from "../../../../Redis/redis";
-
+import {redis} from "../../../../Redis/redis"
 dbConnect();
 
 export async function GET(request: NextRequest) {
