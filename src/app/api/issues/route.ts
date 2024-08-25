@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   const cacheKey = "issues";
   try {
     const cachedIssues = await redis.get(cacheKey);
-    if (cachedIssues) return new NextResponse(cachedIssues, { status: 200 });
+    if (cachedIssues) return new NextResponse(JSON.stringify(cachedIssues), { status: 200 });
     const issues = await Issue.find();
-    await redis.set(cacheKey, JSON.stringify(issues), "EX", 3600);
+    await redis.set(cacheKey, JSON.stringify(issues));
     return new NextResponse(JSON.stringify(issues), { status: 200 });
   } catch (error) {
     console.error("Error fetching issues:", error);

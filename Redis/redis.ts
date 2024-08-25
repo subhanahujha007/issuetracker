@@ -1,7 +1,8 @@
-import { Redis } from '@upstash/redis'
+import { Redis } from '@upstash/redis';
 
-export const redisdb =()=> new Redis({
-  url: process.env.NEXTURL,
-  token: process.env.TOKEN,
-})
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_URL,
+  token: process.env.UPSTASH_REDIS_TOKEN,
+});
 
+export { redis };
