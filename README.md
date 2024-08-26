@@ -1,5 +1,5 @@
 Issue tracker build with  Radix UI, Clerk, Tailwind, and More
-This project is a Next.js application bootstrapped with create-next-app, featuring technologies such as Next.js, Radix UI, Shadcn, Clerk, Tailwind CSS, Zod, TypeScript, MongoDB, and React Hook Form.
+This project is a Next.js application bootstrapped with create-next-app, featuring technologies such as Next.js, Redis, Radix UI, Shadcn, Clerk, Tailwind CSS, Zod, TypeScript, MongoDB, and React Hook Form.
 
 Getting Started
 To get started with this project, follow these steps:
