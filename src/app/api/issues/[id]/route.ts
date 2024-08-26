@@ -44,6 +44,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     if (!updatedIssue) return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
 
     await redis.del(`issue:${params.id}`);
+    await redis.del("issues");
+
     return NextResponse.json({ message: 'Status updated' }, { status: 200 });
   } catch (error) {
     console.error('Error updating issue:', error);
@@ -57,6 +59,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     if (!deletedIssue) return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
 
     await redis.del(`issue:${params.id}`);
+    await redis.del("issues");
+
     return NextResponse.json({ message: 'Issue deleted' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting issue:', error);
